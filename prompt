@@ -1,0 +1,249 @@
+import React, { useState, useEffect } from "react";
+
+// Tech-English-Wordle-Style-Game.jsx — valida apenas palavras do arquivo
+
+const WORDS = [
+  { word: "print", type: "command", hint: 'Example: print("Hello, world!")' },
+  { word: "run", type: "command", hint: 'Example: You can run the program by clicking "Run".' },
+  { word: "save", type: "command", hint: 'Example: Don\'t forget to save your file before closing.' },
+  { word: "click", type: "command", hint: 'Example: Click the button to start.' },
+  { word: "input", type: "command", hint: 'Example: Use input() to ask for user data.' },
+  { word: "open", type: "command", hint: 'Example: Open the file before reading its contents.' },
+  { word: "close", type: "command", hint: 'Example: Always close the file after reading.' },
+  { word: "loop", type: "command", hint: 'Example: Use a loop to repeat the process 5 times.' },
+  { word: "return", type: "command", hint: 'Example: This function returns the result.' },
+  { word: "break", type: "command", hint: 'Example: Break the loop if the value is found.' },
+  { word: "function", type: "command", hint: 'Example: This code defines a function to add two numbers.' },
+  { word: "import", type: "command", hint: 'Example: Import the module before using it.' },
+  { word: "setup", type: "phrasal", hint: 'Phrasal verb: set up — I need to set up my new laptop.' },
+  { word: "login", type: "phrasal", hint: 'Phrasal verb: log in — Log in with your email and password.' },
+  { word: "shutdown", type: "phrasal", hint: 'Phrasal verb: shut down — Don\'t forget to shut down your PC.' },
+  { word: "plugin", type: "phrasal", hint: 'Phrasal verb: plug in — Plug in the charger before it dies.' },
+  { word: "backup", type: "phrasal", hint: 'Phrasal verb: back up — Always back up your files.' },
+  { word: "turnon", type: "phrasal", hint: 'Phrasal verb: turn on — Turn on the monitor first.' },
+  { word: "checkout", type: "phrasal", hint: 'Phrasal verb: check out — Check out this new code editor.' },
+  { word: "breakdown", type: "phrasal", hint: 'Phrasal verb: break down — The server broke down last night.' },
+  { word: "figureout", type: "phrasal", hint: 'Phrasal verb: figure out — I can\'t figure out this error.' },
+  { word: "scrolldown", type: "phrasal", hint: 'Phrasal verb: scroll down — Scroll down to see more options.' },
+  { word: "zoomin", type: "phrasal", hint: 'Phrasal verb: zoom in — Zoom in to see the details.' },
+  { word: "signout", type: "phrasal", hint: 'Phrasal verb: sign out — Don\'t forget to sign out after using the system.' },
+  { word: "fillin", type: "phrasal", hint: 'Phrasal verb: fill in — Please fill in the registration form.' },
+  { word: "clickon", type: "phrasal", hint: 'Phrasal verb: click on — Click on the icon to open the app.' }
+];
+
+const ALPHABET = "abcdefghijklmnopqrstuvwxyz".split("");
+
+function pickRandomWord() {
+  return WORDS[Math.floor(Math.random() * WORDS.length)];
+}
+
+function isWordValid(word) {
+  return WORDS.some((w) => w.word === word);
+}
+
+export default function TechEnglishWordle() {
+  const [target, setTarget] = useState(pickRandomWord());
+  const [guesses, setGuesses] = useState([]);
+  const [currentGuess, setCurrentGuess] = useState("");
+  const [message, setMessage] = useState("");
+  const [letterStatus, setLetterStatus] = useState({});
+  const [error, setError] = useState("");
+  const maxAttempts = 10;
+
+  useEffect(() => {
+    resetGame();
+  }, []);
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (message) return;
+      if (/^[a-zA-Z]$/.test(e.key)) {
+        setCurrentGuess((prev) => prev + e.key.toLowerCase());
+      } else if (e.key === "Backspace") {
+        handleDelete();
+      } else if (e.key === "Enter") {
+        handleSubmitGuess();
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  });
+
+  function resetGame() {
+    setTarget(pickRandomWord());
+    setGuesses([]);
+    setCurrentGuess("");
+    setMessage("");
+    setLetterStatus({});
+    setError("");
+  }
+
+  function handleSubmitGuess() {
+    if (message) return;
+    if (currentGuess.length === 0) return;
+    const guess = currentGuess.toLowerCase();
+
+    if (!isWordValid(guess)) {
+      setError(`❌ "${guess}" is not in the Tech English list.`);
+      setCurrentGuess("");
+      return;
+    }
+
+    setError("");
+    const newGuesses = [...guesses, guess];
+    setGuesses(newGuesses);
+    setCurrentGuess("");
+
+    updateLetterStatus(guess);
+
+    if (guess === target.word) {
+      setMessage("🎉 You won!");
+    } else if (newGuesses.length >= maxAttempts) {
+      setMessage(`❌ You lost — the word was "${target.word}"`);
+    }
+  }
+
+  function updateLetterStatus(guess) {
+    const newStatus = { ...letterStatus };
+    for (let i = 0; i < guess.length; i++) {
+      const letter = guess[i];
+      if (letter === target.word[i]) {
+        newStatus[letter] = "correct";
+      } else if (target.word.includes(letter)) {
+        if (newStatus[letter] !== "correct") newStatus[letter] = "present";
+      } else {
+        if (!newStatus[letter]) newStatus[letter] = "absent";
+      }
+    }
+    setLetterStatus(newStatus);
+  }
+
+  function handleKeyClick(letter) {
+    if (message) return;
+    setCurrentGuess((prev) => prev + letter);
+  }
+
+  function handleDelete() {
+    setCurrentGuess((prev) => prev.slice(0, -1));
+  }
+
+  function renderColoredGuess(guess) {
+    const result = [];
+    for (let i = 0; i < guess.length; i++) {
+      let color = "bg-gray-300";
+      if (target.word[i] && guess[i] === target.word[i]) {
+        color = "bg-green-500 text-white";
+      } else if (target.word.includes(guess[i])) {
+        color = "bg-yellow-400 text-white";
+      }
+      result.push(
+        <span key={i} className={`w-10 h-10 flex items-center justify-center font-bold uppercase rounded ${color}`}>
+          {guess[i]}
+        </span>
+      );
+    }
+    return <div className="flex gap-2 justify-center mb-2">{result}</div>;
+  }
+
+  function getKeyColor(letter) {
+    switch (letterStatus[letter]) {
+      case "correct":
+        return "bg-green-500 text-white";
+      case "present":
+        return "bg-yellow-400 text-white";
+      case "absent":
+        return "bg-gray-400 text-white";
+      default:
+        return "bg-slate-100 hover:bg-slate-200";
+    }
+  }
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 p-6">
+      <div className="w-full max-w-lg bg-white rounded-2xl shadow-md p-6">
+        <header className="flex items-center justify-between mb-4">
+          <h1 className="text-2xl font-bold">Tech English — Wordle Style</h1>
+          <button onClick={resetGame} className="px-3 py-1 rounded-lg border hover:bg-slate-100">New Game</button>
+        </header>
+
+        <section className="mb-4">
+          {guesses.map((g, idx) => (
+            <div key={idx}>{renderColoredGuess(g)}</div>
+          ))}
+
+          {!message && guesses.length < maxAttempts && (
+            <div className="flex gap-2 justify-center mb-2">
+              {Array.from(currentGuess).map((ch, i) => (
+                <span
+                  key={i}
+                  className="w-10 h-10 flex items-center justify-center border rounded font-bold uppercase"
+                >
+                  {ch}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {error && (
+            <div className="mt-2 text-red-600 font-medium text-center">{error}</div>
+          )}
+        </section>
+
+        <section className="mb-4">
+          {!message && guesses.length < maxAttempts && (
+            <div className="grid grid-cols-10 gap-1">
+              {ALPHABET.map((l) => (
+                <button
+                  key={l}
+                  onClick={() => handleKeyClick(l)}
+                  className={`px-2 py-1 border rounded font-bold uppercase ${getKeyColor(l)}`}
+                >
+                  {l}
+                </button>
+              ))}
+              <button
+                onClick={handleDelete}
+                className="col-span-2 px-2 py-1 border rounded bg-red-200 hover:bg-red-300 font-bold"
+              >
+                Del
+              </button>
+              <button
+                onClick={handleSubmitGuess}
+                className="col-span-3 px-2 py-1 border rounded bg-blue-500 hover:bg-blue-600 text-white font-bold"
+              >
+                Enter
+              </button>
+            </div>
+          )}
+        </section>
+
+        <section className="mb-4">
+          <div className="p-3 rounded-lg bg-slate-50">
+            <div className="font-medium">Status</div>
+            <div className="mt-1 text-slate-700">{message || `Attempts left: ${maxAttempts - guesses.length}`}</div>
+
+            {message && message.includes("You won") && (
+              <div className="mt-3 p-3 border rounded bg-green-50">
+                <div className="font-bold text-green-700">Word: {target.word}</div>
+                <div className="text-slate-700">Type: {target.type}</div>
+                <div className="italic text-slate-600">{target.hint}</div>
+              </div>
+            )}
+
+            {message && message.includes("You lost") && (
+              <div className="mt-3 p-3 border rounded bg-red-50">
+                <div className="font-bold text-red-700">Correct Word: {target.word}</div>
+                <div className="text-slate-700">Type: {target.type}</div>
+                <div className="italic text-slate-600">{target.hint}</div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        <footer className="flex items-center justify-between text-sm text-slate-500">
+          <div>Words from Tech English list</div>
+        </footer>
+      </div>
+    </div>
+  );
+}
