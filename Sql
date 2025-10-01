@@ -1,0 +1,181 @@
+/* Lógico_1: */
+
+CREATE TABLE Livros (
+    titulo VARCHAR,
+    Genero varchar,
+    Descricao varchar,
+    Isbn varchar PRIMARY KEY,
+    Impressoes varchar,
+    Paginas varchar,
+    Ano_pub varchar,
+    autor varchar,
+    fk_Autores_Id_autor varchar,
+    ordem_autor varchar
+);
+
+CREATE TABLE Autores (
+    Id_autor varchar PRIMARY KEY,
+    nome_autor varchar,
+    Bio varchar,
+    Nacionalidade varchar,
+    Data_nasc varchar,
+    obras_escritas varchar
+);
+
+CREATE TABLE Exemplares (
+    Id_EXE varchar PRIMARY KEY,
+    Condicao varchar,
+    status varchar
+);
+
+CREATE TABLE Clientes (
+    IdCliente varchar PRIMARY KEY,
+    nome varchar,
+    email varchar,
+    telefone varchar,
+    Rua varchar,
+    estado varchar,
+    cidade varchar
+);
+
+CREATE TABLE Items_Pedidos (
+);
+
+CREATE TABLE Departamentos_funcionarios (
+    Nome_depar varchar,
+    Responsavel varchar,
+    id_depart varchar,
+    Descricao_Ativ varchar,
+    ID_func varchar,
+    Estado_civil varchar,
+    telefone varchar,
+    cargo varchar,
+    nome varchar,
+    Cidade varchar,
+    Estado varchar,
+    Rua varchar,
+    email varchar,
+    fk_Departamentos_funcionarios_id_depart varchar,
+    PRIMARY KEY (id_depart, ID_func)
+);
+
+CREATE TABLE Pedidos (
+    id_pedido varchar PRIMARY KEY,
+    Data_pedido varchar,
+    Status varchar,
+    data_pagamento varchar,
+    metodo_pagamento varchar,
+    fk_Clientes_IdCliente varchar
+);
+
+CREATE TABLE Identificadores (
+    descricao varchar,
+    palavra_chave varchar,
+    Id_iden varchar PRIMARY KEY,
+    fk_Livros_Isbn varchar
+);
+
+CREATE TABLE Areas_Conhec (
+    Descricao varchar,
+    Codigo_area varchar,
+    Id_Area varchar PRIMARY KEY
+);
+
+CREATE TABLE Exemplares_Livros (
+    fk_Exemplares_Id_EXE varchar,
+    fk_Livros_Isbn varchar
+);
+
+CREATE TABLE Livros_Areas (
+    fk_Areas_Conhec_Id_Area varchar,
+    fk_Livros_Isbn varchar
+);
+
+CREATE TABLE ItensP_Exep (
+    fk_Exemplares_Id_EXE varchar
+);
+
+CREATE TABLE Itemped_pedid (
+    fk_Pedidos_id_pedido varchar
+);
+
+CREATE TABLE gerenciam (
+    fk_Departamentos_funcionarios_id_depart varchar,
+    fk_Departamentos_funcionarios_ID_func varchar,
+    fk_Pedidos_id_pedido varchar
+);
+
+CREATE TABLE atendem (
+    fk_Departamentos_funcionarios_id_depart varchar,
+    fk_Departamentos_funcionarios_ID_func varchar,
+    fk_Clientes_IdCliente varchar
+);
+ 
+ALTER TABLE Livros ADD CONSTRAINT FK_Livros_2
+    FOREIGN KEY (fk_Autores_Id_autor)
+    REFERENCES Autores (Id_autor)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Departamentos_funcionarios ADD CONSTRAINT FK_Departamentos_funcionarios_2
+    FOREIGN KEY (fk_Departamentos_funcionarios_id_depart, ???)
+    REFERENCES Departamentos_funcionarios (id_depart, ???);
+ 
+ALTER TABLE Pedidos ADD CONSTRAINT FK_Pedidos_2
+    FOREIGN KEY (fk_Clientes_IdCliente)
+    REFERENCES Clientes (IdCliente)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Identificadores ADD CONSTRAINT FK_Identificadores_2
+    FOREIGN KEY (fk_Livros_Isbn)
+    REFERENCES Livros (Isbn)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Exemplares_Livros ADD CONSTRAINT FK_Exemplares_Livros_1
+    FOREIGN KEY (fk_Exemplares_Id_EXE)
+    REFERENCES Exemplares (Id_EXE)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Exemplares_Livros ADD CONSTRAINT FK_Exemplares_Livros_2
+    FOREIGN KEY (fk_Livros_Isbn)
+    REFERENCES Livros (Isbn)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE Livros_Areas ADD CONSTRAINT FK_Livros_Areas_1
+    FOREIGN KEY (fk_Areas_Conhec_Id_Area)
+    REFERENCES Areas_Conhec (Id_Area)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Livros_Areas ADD CONSTRAINT FK_Livros_Areas_2
+    FOREIGN KEY (fk_Livros_Isbn)
+    REFERENCES Livros (Isbn)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE ItensP_Exep ADD CONSTRAINT FK_ItensP_Exep_1
+    FOREIGN KEY (fk_Exemplares_Id_EXE)
+    REFERENCES Exemplares (Id_EXE)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE Itemped_pedid ADD CONSTRAINT FK_Itemped_pedid_1
+    FOREIGN KEY (fk_Pedidos_id_pedido)
+    REFERENCES Pedidos (id_pedido)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE gerenciam ADD CONSTRAINT FK_gerenciam_1
+    FOREIGN KEY (fk_Departamentos_funcionarios_id_depart, fk_Departamentos_funcionarios_ID_func)
+    REFERENCES Departamentos_funcionarios (id_depart, ID_func)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE gerenciam ADD CONSTRAINT FK_gerenciam_2
+    FOREIGN KEY (fk_Pedidos_id_pedido)
+    REFERENCES Pedidos (id_pedido)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE atendem ADD CONSTRAINT FK_atendem_1
+    FOREIGN KEY (fk_Departamentos_funcionarios_id_depart, fk_Departamentos_funcionarios_ID_func)
+    REFERENCES Departamentos_funcionarios (id_depart, ID_func)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE atendem ADD CONSTRAINT FK_atendem_2
+    FOREIGN KEY (fk_Clientes_IdCliente)
+    REFERENCES Clientes (IdCliente)
+    ON DELETE SET NULL;
