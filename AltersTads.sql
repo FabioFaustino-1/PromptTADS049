@@ -27,3 +27,12 @@ alter table departamentos
 alter table departamentos change column Descricao_Ativ `status` enum ("Ativado", "Desativado") not null;
 
 alter table departamentos add column relatorio_mes varchar(100);
+
+
+-- Alterações gerais
+ALTER TABLE Clientes MODIFY telefone VARCHAR(20) NOT NULL;
+ALTER TABLE funcionarios MODIFY telefone VARCHAR(20) NOT NULL;
+ALTER TABLE Livros MODIFY isbn varchar(20) primary key;
+ALTER TABLE Exemplares
+ADD COLUMN Livro_ISBN VARCHAR(13) NOT NULL,
+ADD CONSTRAINT fk_exemplar_livro FOREIGN KEY (Livro_ISBN) REFERENCES Livros(Isbn);
