@@ -42,7 +42,31 @@ INSERT INTO Livros (isbn, titulo, Genero, Descricao, Impressoes, Paginas, Ano_pu
 ('978-06-11224-15-5', 'Líderes do Século', 'Biografia', 'Grandes líderes mundiais', 1200, 500, '2000-10-10', 'George White', 'Única', 19),
 ('978-03-85472-57-9', 'Amor em Tempos Difíceis', 'Romance', 'Drama romântico contemporâneo', 4000, 250, '2021-05-05', 'Carolina Dias', 'Única', 20);
 
-INSERT INTO Exemplares (Condicao, `status`) VALUES
+ALTER TABLE Exemplares
+ADD COLUMN Livro_ISBN VARCHAR(20) NOT NULL,
+ADD CONSTRAINT fk_exemplar_livro FOREIGN KEY (Livro_ISBN) REFERENCES Livros(Isbn);
+UPDATE Exemplares SET Livro_ISBN = '978-03-16494-27-8' WHERE Id_EXE = 1;
+UPDATE Exemplares SET Livro_ISBN = '978-01-40449-13-6' WHERE Id_EXE = 2;
+UPDATE Exemplares SET Livro_ISBN = '978-01-43127-74-1' WHERE Id_EXE = 3;
+UPDATE Exemplares SET Livro_ISBN = '978-05-25559-47-5' WHERE Id_EXE = 4;
+UPDATE Exemplares SET Livro_ISBN = '978-05-25434-14-7' WHERE Id_EXE = 5;
+UPDATE Exemplares SET Livro_ISBN = '978-05-25996-15-2' WHERE Id_EXE = 6;
+UPDATE Exemplares SET Livro_ISBN = '978-05-93239-13-4' WHERE Id_EXE = 7;
+UPDATE Exemplares SET Livro_ISBN = '978-14-00033-41-6' WHERE Id_EXE = 8;
+UPDATE Exemplares SET Livro_ISBN = '978-06-24577-14-4' WHERE Id_EXE = 9;
+UPDATE Exemplares SET Livro_ISBN = '978-07-35211-29-2' WHERE Id_EXE = 10;
+UPDATE Exemplares SET Livro_ISBN = '978-15-01124-02-0' WHERE Id_EXE = 11;
+UPDATE Exemplares SET Livro_ISBN = '978-06-23150-07-7' WHERE Id_EXE = 12;
+UPDATE Exemplares SET Livro_ISBN = '978-05-93139-13-4' WHERE Id_EXE = 13;
+UPDATE Exemplares SET Livro_ISBN = '978-12-50768-61-5' WHERE Id_EXE = 14;
+UPDATE Exemplares SET Livro_ISBN = '978-19-82137-27-4' WHERE Id_EXE = 15;
+UPDATE Exemplares SET Livro_ISBN = '979-12-34567-89-0' WHERE Id_EXE = 16;
+UPDATE Exemplares SET Livro_ISBN = '978-05-25566-15-2' WHERE Id_EXE = 17;
+UPDATE Exemplares SET Livro_ISBN = '978-01-41439-60-0' WHERE Id_EXE = 18;
+UPDATE Exemplares SET Livro_ISBN = '978-06-11224-15-5' WHERE Id_EXE = 19;
+UPDATE Exemplares SET Livro_ISBN = '978-03-85472-57-9' WHERE Id_EXE = 20;
+
+INSERT INTO Exemplares (Condicao, `Estatus`) VALUES
 ('Capa danificada', 'RUIM'),
 ('Páginas rasgadas', 'PESSIMO'),
 ('Bom estado geral', 'INDIFERENTE'),
