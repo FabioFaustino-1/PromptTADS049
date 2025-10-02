@@ -1,8 +1,18 @@
 create database editora;
 use editora;
 
+CREATE TABLE if not exists Autores (
+    Id_autor INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nome_autor varchar (50) null,
+    Bio varchar (200) null,
+    Nacionalidade varchar (30) null,
+    Data_nasc date null,
+    obras_escritas varchar(300) null
+);
+
+
 CREATE TABLE if not exists Livros (
-    Isbn int UNIQUE PRIMARY KEY AUTO INCREMENT,
+    Isbn int UNIQUE PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR (100) null,
     Genero VARCHAR (20) null,
     Descricao VARCHAR (200) null,
@@ -15,23 +25,15 @@ CREATE TABLE if not exists Livros (
     foreign key (id_autor) references Autores(Id_autor)
 );
 
-CREATE TABLE if not exists Autores (
-    Id_autor INT PRIMARY KEY AUTO INCREMENT NOT NULL,
-    nome_autor varchar (50) null,
-    Bio varchar (200) null,
-    Nacionalidade varchar (30) null,
-    Data_nasc date null,
-    obras_escritas varchar(300) null
-);
 
 CREATE TABLE if not exists Exemplares (
-    Id_EXE INT PRIMARY KEY AUTO INCREMENT NOT NULL,
+    Id_EXE INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     Condicao varchar (200) not null,
     `status` ENUM("PESSIMO", "RUIM", "INDIFERENTE") not null
 );
 
 CREATE TABLE if not exists Clientes (
-    IdCliente INT PRIMARY KEY AUTO INCREMENT NOT NULL,
+    IdCliente INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nome varchar(70) NOT NULL,
     email varchar(150) NOT NULL,
     telefone INT(17) NOT NULL,
@@ -40,17 +42,8 @@ CREATE TABLE if not exists Clientes (
     cidade varchar (200) not null
 );
 
-create table if not exists departamentos (
-    id_depart INT primary key AUTO INCREMENT not null,
-    Nome_depar varchar (150) not null,
-    Responsavel varchar not null,
-    ID_funcionarios_func INT,
-    FOREIGN KEY (ID_funcionarios_func) REFERENCES funcionarios(ID_funcionarios),
-    Descricao_Ativ varchar (300) null
-  );
-    
 CREATE TABLE if not exists funcionarios (
-    ID_funcionarios INT primary key AUTO INCREMENT not null,
+    ID_funcionarios INT primary key AUTO_INCREMENT not null,
     Estado_civil varchar (100) not null,
     telefone INT (17) not null,
     cargo varchar (100) not null,
@@ -61,6 +54,16 @@ CREATE TABLE if not exists funcionarios (
     email varchar (100) not null
 );
 
+create table if not exists departamentos (
+    id_depart INT primary key AUTO_INCREMENT not null,
+    Nome_depar varchar (150) not null,
+    Responsavel INT,
+    FOREIGN KEY (Responsavel) REFERENCES funcionarios(ID_funcionarios),
+    Descricao_Ativ varchar (300) null
+  );
+    
+
+
 CREATE TABLE if not exists Pedidos (
     id_pedido varchar (300) not null PRIMARY KEY,
     Data_pedido date not null,
@@ -68,11 +71,11 @@ CREATE TABLE if not exists Pedidos (
     data_pagamento date not null,
     metodo_pagamento varchar (300) not null,
     Clientes_ID int,
-    FOREIGN KEY (Clientes_ID) REFERENCES clientes(IdClientes)
+    FOREIGN KEY (Clientes_ID) REFERENCES clientes(IdCliente)
 );
 
 CREATE TABLE if not exists Identificadores (
-    Id_iden Int PRIMARY KEY AUTO INCREMENT NOT NULL,
+    Id_iden Int PRIMARY KEY AUTO_INCREMENT NOT NULL,
     descricao varchar (300),
     palavra_chave varchar (300),
     LIVROS_ISBN INT,
@@ -80,7 +83,7 @@ CREATE TABLE if not exists Identificadores (
 );
 
 CREATE TABLE if not exists Areas_Conhec (
-    Id_Area INT PRIMARY KEY AUTO INCREMENT NOT NULL,
+    Id_Area INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     Descricao varchar(100) null,
     Codigo_area varchar (300) null
 );
