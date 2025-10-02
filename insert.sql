@@ -20,27 +20,27 @@ INSERT INTO Autores (nome_autor, Bio, Nacionalidade, Data_nasc, obras_escritas) 
 ('George White', 'Autor de biografias históricas', 'Estadunidense', '1958-11-13', 'Líderes do Século'),
 ('Carolina Dias', 'Escritora de ficção romântica', 'Brasileira', '1997-03-21', 'Amor em Tempos Difíceis');
 
-INSERT INTO Livros (titulo, Genero, Descricao, Impressoes, Paginas, Ano_pub, autor, ordem_autor, id_autor) VALUES
-('A sombra do passado', 'Romance', 'Romance histórico no Brasil do séc XIX', 5000, 320, '2001-05-15', 'José Almeida', 'Principal', 1),
-('Mundos invisíveis', 'Ciência', 'Estudo sobre organismos microscópicos', 2000, 210, '2010-08-12', 'Maria Souza', 'Única', 2),
-('Dragões e Magia', 'Fantasia', 'Livro de fantasia épica com dragões', 8000, 450, '1999-06-20', 'John Smith', 'Principal', 3),
-('O Reino das Cores', 'Infantil', 'História lúdica para crianças', 3000, 120, '2015-11-01', 'Carla Mendes', 'Única', 4),
-('Cidades de Fogo', 'Romance', 'Romance urbano ambientado em Luanda', 1500, 280, '2008-03-22', 'Pedro Lima', 'Única', 5),
-('Entrelinhas da Vida', 'Contos', 'Coleção de contos modernos', 1200, 190, '2013-07-19', 'Fernanda Torres', 'Única', 6),
-('O Universo Oculto', 'Ciência', 'Teorias sobre o cosmos', 2500, 360, '2005-10-05', 'Michael Brown', 'Única', 7),
-('Poemas de Luz', 'Poesia', 'Coletânea poética contemporânea', 1100, 100, '2018-04-10', 'Luciana Costa', 'Única', 8),
-('Banco de Dados SQL', 'Técnico', 'Guia prático de SQL', 900, 340, '2002-01-18', 'Antônio Nogueira', 'Única', 9),
-('Segredos na Noite', 'Policial', 'Romance policial em Lisboa', 2500, 270, '2011-02-15', 'Sofia Pereira', 'Única', 10),
-('O Futuro do Amanhã', 'Sci-Fi', 'Exploração futurista', 3500, 400, '2007-09-23', 'Hiroshi Tanaka', 'Única', 11),
-('Amor em Madrid', 'Romance', 'Romance histórico em Madrid', 2000, 330, '2012-11-05', 'Elena García', 'Única', 12),
-('A espada da lua', 'Fantasia', 'História épica de guerreiros', 6000, 370, '2016-06-30', 'Carlos Silva', 'Única', 13),
-('Vidas Paralelas', 'Crônicas', 'Crônicas sobre a vida urbana', 1500, 210, '2019-09-12', 'Julia Martins', 'Única', 14),
-('Programação Moderna', 'Técnico', 'Guia avançado de programação', 500, 280, '1995-04-22', 'Robert Johnson', 'Única', 15),
-('Viva Melhor Agora', 'Autoajuda', 'Livro motivacional', 10000, 200, '2020-01-01', 'Patrícia Faria', 'Única', 16),
-('Sombras do Poder', 'Thriller', 'Suspense político', 2500, 340, '2017-08-08', 'Thiago Rocha', 'Única', 17),
-('A Terra Encantada', 'Fantasia', 'Livro infantojuvenil mágico', 3000, 180, '2014-02-25', 'Amanda Lopes', 'Única', 18),
-('Líderes do Século', 'Biografia', 'Grandes líderes mundiais', 1200, 500, '2000-10-10', 'George White', 'Única', 19),
-('Amor em Tempos Difíceis', 'Romance', 'Drama romântico contemporâneo', 4000, 250, '2021-05-05', 'Carolina Dias', 'Única', 20);
+INSERT INTO Livros (isbn, titulo, Genero, Descricao, Impressoes, Paginas, Ano_pub, autor, ordem_autor, id_autor) VALUES
+('978-03-16494-27-8', 'A sombra do passado', 'Romance', 'Romance histórico no Brasil do séc XIX', 5000, 320, '2001-05-15', 'José Almeida', 'Principal', 1),
+('978-01-40449-13-6', 'Mundos invisíveis', 'Ciência', 'Estudo sobre organismos microscópicos', 2000, 210, '2010-08-12', 'Maria Souza', 'Única', 2),
+('978-01-43127-74-1', 'Dragões e Magia', 'Fantasia', 'Livro de fantasia épica com dragões', 8000, 450, '1999-06-20', 'John Smith', 'Principal', 3),
+('978-05-25559-47-5', 'O Reino das Cores', 'Infantil', 'História lúdica para crianças', 3000, 120, '2015-11-01', 'Carla Mendes', 'Única', 4),
+('978-05-25434-14-7', 'Cidades de Fogo', 'Romance', 'Romance urbano ambientado em Luanda', 1500, 280, '2008-03-22', 'Pedro Lima', 'Única', 5),
+('978-05-25566-15-2', 'Entrelinhas da Vida', 'Contos', 'Coleção de contos modernos', 1200, 190, '2013-07-19', 'Fernanda Torres', 'Única', 6),
+('978-05-93139-13-4', 'O Universo Oculto', 'Ciência', 'Teorias sobre o cosmos', 2500, 360, '2005-10-05', 'Michael Brown', 'Única', 7),
+('978-14-00033-41-6', 'Poemas de Luz', 'Poesia', 'Coletânea poética contemporânea', 1100, 100, '2018-04-10', 'Luciana Costa', 'Única', 8),
+('978-06-24577-14-4', 'Banco de Dados SQL', 'Técnico', 'Guia prático de SQL', 900, 340, '2002-01-18', 'Antônio Nogueira', 'Única', 9),
+('978-07-35211-29-2', 'Segredos na Noite', 'Policial', 'Romance policial em Lisboa', 2500, 270, '2011-02-15', 'Sofia Pereira', 'Única', 10),
+('978-15-01124-02-0', 'O Futuro do Amanhã', 'Sci-Fi', 'Exploração futurista', 3500, 400, '2007-09-23', 'Hiroshi Tanaka', 'Única', 11),
+('978-06-23150-07-7', 'Amor em Madrid', 'Romance', 'Romance histórico em Madrid', 2000, 330, '2012-11-05', 'Elena García', 'Única', 12),
+('978-05-93139-13-4', 'A espada da lua', 'Fantasia', 'História épica de guerreiros', 6000, 370, '2016-06-30', 'Carlos Silva', 'Única', 13),
+('978-12-50768-61-5', 'Vidas Paralelas', 'Crônicas', 'Crônicas sobre a vida urbana', 1500, 210, '2019-09-12', 'Julia Martins', 'Única', 14),
+('978-19-82137-27-4', 'Programação Moderna', 'Técnico', 'Guia avançado de programação', 500, 280, '1995-04-22', 'Robert Johnson', 'Única', 15),
+('979-12-34567-89-0', 'Viva Melhor Agora', 'Autoajuda', 'Livro motivacional', 10000, 200, '2020-01-01', 'Patrícia Faria', 'Única', 16),
+('978-05-25566-15-2', 'Sombras do Poder', 'Thriller', 'Suspense político', 2500, 340, '2017-08-08', 'Thiago Rocha', 'Única', 17),
+('978-01-41439-60-0', 'A Terra Encantada', 'Fantasia', 'Livro infantojuvenil mágico', 3000, 180, '2014-02-25', 'Amanda Lopes', 'Única', 18),
+('978-06-11224-15-5', 'Líderes do Século', 'Biografia', 'Grandes líderes mundiais', 1200, 500, '2000-10-10', 'George White', 'Única', 19),
+('978-03-85472-57-9', 'Amor em Tempos Difíceis', 'Romance', 'Drama romântico contemporâneo', 4000, 250, '2021-05-05', 'Carolina Dias', 'Única', 20);
 
 INSERT INTO Exemplares (Condicao, `status`) VALUES
 ('Capa danificada', 'RUIM'),
@@ -140,7 +140,8 @@ INSERT INTO Pedidos (id_pedido, Data_pedido, `Status`, data_pagamento, metodo_pa
 ('PED007', '2023-07-07', 'Pendente', '2023-07-08', 'Cartão', 7),
 ('PED008', '2023-08-15', 'Pago', '2023-08-16', 'Boleto', 8),
 ('PED009', '2023-09-30', 'Pago', '2023-10-01', 'Pix', 9),
-('PED010', '2023-10-25', 'Cancelado', '2023-10-26', 'pix', 10)
+('PED010', '2023-10-25', 'Cancelado', '2023-10-26', 'pix', 10);
+
 
 INSERT INTO Identificadores (descricao, palavra_chave, LIVROS_ISBN) VALUES
 ('Romance histórico', 'romance', 1),
@@ -185,6 +186,4 @@ INSERT INTO Areas_Conhec (Descricao, Codigo_area) VALUES
 ('Educação', 'EDU018'),
 ('Filosofia', 'FIL019'),
 ('Psicologia', 'PSI020');
-
-
 
