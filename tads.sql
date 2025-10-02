@@ -1,89 +1,91 @@
-create database editora;
-use editora;
+-- CRIAÇÃO DO BANCO DE DADOS
+CREATE DATABASE IF NOT EXISTS Editora;
+USE Editora;
 
-CREATE TABLE if not exists Autores (
-    Id_autor INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nome_autor varchar (50) null,
-    Bio varchar (200) null,
-    Nacionalidade varchar (30) null,
-    Data_nasc date null,
-    obras_escritas varchar(300) null
+-- CRIAÇÃO DAS TABELAS
+CREATE TABLE IF NOT EXISTS Autores (
+    ID_autor INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nome_autor VARCHAR (50) NULL,
+    bio VARCHAR (200) NULL,
+    nacionalidade VARCHAR (30) NULL,
+    data_nasc DATE NULL,
+    obras_escritas VARCHAR (300) NULL
 );
 
 
-CREATE TABLE if not exists Livros (
-    Isbn VARCHAR(13) UNIQUE PRIMARY KEY AUTO_INCREMENT,
-    titulo VARCHAR (100) null,
-    Genero VARCHAR (20) null,
-    Descricao VARCHAR (200) null,
-    Impressoes INT NULL,
-    Paginas INT NULL,
-    Ano_pub date NULL,
-    autor VARCHAR (100) null,
-    ordem_autor varchar (100) null,
-    id_autor int,
-    foreign key (id_autor) references Autores(Id_autor)
+CREATE TABLE IF NOT EXISTS Livros (
+    ISBN VARCHAR(13) UNIQUE PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR (100) NULL,
+    genero VARCHAR (20) NULL,
+    descricao VARCHAR (200) NULL,
+    impressoes INT NULL,
+    paginas INT NULL,
+    ano_pub DATE NULL,
+    autor VARCHAR (100) NULL,
+    ordem_autor VARCHAR (100) NULL,
+    ID_autor INT,
+    FOREIGN KEY (ID_autor) REFERENCES Autores(ID_autor)
 );
 
 
-CREATE TABLE if not exists Exemplares (
-    Id_EXE INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    Condicao varchar (200) not null,
-    `status` ENUM("PESSIMO", "RUIM", "INDIFERENTE") not null
+CREATE TABLE IF NOT EXISTS Exemplares (
+    ID_exemp INT PRIMARY KEY AUTO_INCREMENT,
+    condicao VARCHAR (200) NOT NULL,
+    `status` ENUM("PESSIMO", "RUIM", "INDIFERENTE", "BOM", "PERFEITO") NOT NULL
 );
 
-CREATE TABLE if not exists Clientes (
-    IdCliente INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nome varchar(70) NOT NULL,
-    email varchar(150) NOT NULL,
+CREATE TABLE IF NOT EXISTS Clientes (
+    ID_cliente INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR (70) NOT NULL,
+    email VARCHAR (150) NOT NULL,
     telefone INT(17) NOT NULL,
-    Rua varchar(100) not null,
-    estado varchar(200) not null,
-    cidade varchar (200) not null
+    rua VARCHAR (100) NOT NULL,
+    estado VARCHAR (200) NOT NULL,
+    cidade VARCHAR (200) NOT NULL
 );
 
-CREATE TABLE if not exists funcionarios (
-    ID_funcionarios INT primary key AUTO_INCREMENT not null,
-    Estado_civil varchar (100) not null,
-    telefone INT (17) not null,
-    cargo varchar (100) not null,
-    nome varchar (100) not null,
-    Cidade varchar (100) not null,
-    Estado varchar (100) not null,
-    Rua varchar (100) not null,
-    email varchar (100) not null
+CREATE TABLE IF NOT EXISTS Funcionarios (
+    ID_funcionarios INT PRIMARY KEY AUTO_INCREMENT,
+    estado_civil VARCHAR (100) NOT NULL,
+    telefone INT (17) NOT NULL,
+    cargo VARCHAR (100) NOT NULL,
+    nome VARCHAR (100) NOT NULL,
+    cidade VARCHAR (100) NOT NULL,
+    estado VARCHAR (100) NOT NULL,
+    rua VARCHAR (100) NOT NULL,
+    email VARCHAR (100) NOT NULL
 );
 
-create table if not exists departamentos (
-    id_depart INT primary key AUTO_INCREMENT not null,
-    Nome_depar varchar (150) not null,
-    Responsavel INT,
+CREATE TABLE IF NOT EXISTS Departamentos (
+    ID_depart INT primary key AUTO_INCREMENT,
+    nome_depar VARCHAR (150) NOT NULL,
+    responsavel INT,
     FOREIGN KEY (Responsavel) REFERENCES funcionarios(ID_funcionarios),
-    Descricao_Ativ varchar (300) null
+    descricao_Ativ VARCHAR (300) NULL
   );
     
 
 
-CREATE TABLE if not exists Pedidos (
-    id_pedido varchar (300) not null PRIMARY KEY,
-    Data_pedido date not null,
-    `Status` varchar (300) not null,
-    data_pagamento date not null,
-    metodo_pagamento varchar (300) not null,
-    Clientes_ID int,
-    FOREIGN KEY (Clientes_ID) REFERENCES clientes(IdCliente)
+CREATE TABLE IF NOT EXISTS Pedidos (
+    ID_pedido VARCHAR (300) NOT NULL PRIMARY KEY,
+    data_pedido DATE NOT NULL,
+    `status` VARCHAR (300) NOT NULL,
+    data_pagamento DATE NOT NULL,
+    metodo_pagamento VARCHAR (300) NOT NULL,
+    clientes_ID INT,
+    FOREIGN KEY (clientes_ID) REFERENCES clientes(ID_cliente)
 );
 
-CREATE TABLE if not exists Identificadores (
-    Id_iden Int PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    descricao varchar (300),
-    palavra_chave varchar (300),
-    LIVROS_ISBN INT,
-    FOREIGN KEY (livros_isbn) REFERENCES livros(isbn)
+CREATE TABLE IF NOT EXISTS Identificadores (
+    ID_iden INT PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR (300),
+    palavra_chave VARCHAR (300),
+    livros_ISBN INT,
+    FOREIGN KEY (livros_ISBN) REFERENCES livros(ISBN)
 );
 
-CREATE TABLE if not exists Areas_Conhec (
-    Id_Area INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    Descricao varchar(100) null,
-    Codigo_area varchar (300) null
+CREATE TABLE IF NOT EXISTS Areas_Conhec (
+    ID_Area INT PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR (100) NULL,
+    codigo_area VARCHAR (300) NULL
 );
