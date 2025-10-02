@@ -142,9 +142,49 @@ INSERT INTO Pedidos (id_pedido, Data_pedido, `Status`, data_pagamento, metodo_pa
 ('PED009', '2023-09-30', 'Pago', '2023-10-01', 'Pix', 9),
 ('PED010', '2023-10-25', 'Cancelado', '2023-10-26', 'pix', 10)
 
+INSERT INTO Identificadores (descricao, palavra_chave, LIVROS_ISBN) VALUES
+('Romance histórico', 'romance', 1),
+('Ciência', 'microbiologia', 2),
+('Fantasia épica', 'dragões', 3),
+('Infantil', 'cores', 4),
+('Romance urbano', 'cidade', 5),
+('Contos', 'modernos', 6),
+('Astronomia', 'cosmos', 7),
+('Poesia', 'luz', 8),
+('Técnico', 'SQL', 9),
+('Policial', 'investigação', 10),
+('Sci-Fi', 'futuro', 11),
+('Romance', 'Madrid', 12),
+('Fantasia', 'guerreiros', 13),
+('Crônicas', 'urbanas', 14),
+('Técnico', 'programação', 15),
+('Autoajuda', 'vida', 16),
+('Thriller', 'política', 17),
+('Fantasia', 'mágico', 18),
+('Biografia', 'líderes', 19),
+('Romance', 'amor', 20);
 
-
-
+INSERT INTO Areas_Conhec (Descricao, Codigo_area) VALUES
+('Literatura', 'LIT001'),
+('Ciência', 'CIE002'),
+('Fantasia', 'FAN003'),
+('Infantil', 'INF004'),
+('Romance', 'ROM005'),
+('Contos', 'CON006'),
+('Astronomia', 'AST007'),
+('Poesia', 'POE008'),
+('Tecnologia', 'TEC009'),
+('Policial', 'POL010'),
+('Ficção Científica', 'FIC011'),
+('História', 'HIS012'),
+('Biografia', 'BIO013'),
+('Autoajuda', 'AUT014'),
+('Suspense', 'SUS015'),
+('Crônicas', 'CRO016'),
+('Arte', 'ART017'),
+('Educação', 'EDU018'),
+('Filosofia', 'FIL019'),
+('Psicologia', 'PSI020');
 
 
 
