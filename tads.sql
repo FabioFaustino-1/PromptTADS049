@@ -1,5 +1,5 @@
 create database editora;
-use editora_2;
+use editora;
 
 CREATE TABLE if not exists Livros (
     Isbn int UNIQUE PRIMARY KEY AUTO INCREMENT,
@@ -11,7 +11,8 @@ CREATE TABLE if not exists Livros (
     Ano_pub date NULL,
     autor VARCHAR (100) null,
     ordem_autor varchar (100) null,
-    foreign key id_autor references Autores(Id_autor_Autores)
+    id_autor int,
+    foreign key (id_autor) references Autores(Id_autor)
 );
 
 CREATE TABLE if not exists Autores (
@@ -43,20 +44,21 @@ create table if not exists departamentos (
     id_depart INT primary key AUTO INCREMENT not null,
     Nome_depar varchar (150) not null,
     Responsavel varchar not null,
-    FOREIGN KEY ID_funcionarios REFERENCES funcionarios
+    ID_funcionarios_func INT,
+    FOREIGN KEY (ID_funcionarios_func) REFERENCES funcionarios(ID_funcionarios),
     Descricao_Ativ varchar (300) null
   );
     
 CREATE TABLE if not exists funcionarios (
-    ID_funcionarios varchar (300) primary key not null,
-    Estado_civil varchar (300) not null,
+    ID_funcionarios INT primary key AUTO INCREMENT not null,
+    Estado_civil varchar (100) not null,
     telefone INT (17) not null,
-    cargo varchar (300) not null,
-    nome varchar (300) not null,
-    Cidade varchar (300) not null,
-    Estado varchar (300) not null,
-    Rua varchar (300) not null,
-    email varchar (300) not null
+    cargo varchar (100) not null,
+    nome varchar (100) not null,
+    Cidade varchar (100) not null,
+    Estado varchar (100) not null,
+    Rua varchar (100) not null,
+    email varchar (100) not null
 );
 
 CREATE TABLE if not exists Pedidos (
@@ -65,18 +67,20 @@ CREATE TABLE if not exists Pedidos (
     `Status` varchar (300) not null,
     data_pagamento date not null,
     metodo_pagamento varchar (300) not null,
-    fk_Clientes_IdCliente varchar (300) not null
+    Clientes_ID int,
+    FOREIGN KEY (Clientes_ID) REFERENCES clientes(IdClientes)
 );
 
 CREATE TABLE if not exists Identificadores (
-  Id_iden varchar (300) PRIMARY KEY,
+    Id_iden Int PRIMARY KEY AUTO INCREMENT NOT NULL,
     descricao varchar (300),
     palavra_chave varchar (300),
-    fk_Livros_Isbn varchar (300)
+    LIVROS_ISBN INT,
+    FOREIGN KEY (livros_isbn) REFERENCES livros(isbn)
 );
 
 CREATE TABLE if not exists Areas_Conhec (
- Id_Area varchar (300) PRIMARY KEY,
-    Descricao varchar(300) null,
+    Id_Area INT PRIMARY KEY AUTO INCREMENT NOT NULL,
+    Descricao varchar(100) null,
     Codigo_area varchar (300) null
 );
