@@ -140,7 +140,7 @@ INSERT INTO Pedidos (id_pedido, Data_pedido, `Status`, data_pagamento, metodo_pa
 ('PED007', '2023-07-07', 'Pendente', '2023-07-08', 'Cartão', 7),
 ('PED008', '2023-08-15', 'Pago', '2023-08-16', 'Boleto', 8),
 ('PED009', '2023-09-30', 'Pago', '2023-10-01', 'Pix', 9),
-('PED010', '2023-10-25', 'Cancelado', '2023-10-26',
+('PED010', '2023-10-25', 'Cancelado', '2023-10-26', 'pix', 10)
 
 
 
