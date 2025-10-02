@@ -12,7 +12,7 @@ CREATE TABLE if not exists Autores (
 
 
 CREATE TABLE if not exists Livros (
-    Isbn int UNIQUE PRIMARY KEY AUTO_INCREMENT,
+    Isbn VARCHAR(13) UNIQUE PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR (100) null,
     Genero VARCHAR (20) null,
     Descricao VARCHAR (200) null,
