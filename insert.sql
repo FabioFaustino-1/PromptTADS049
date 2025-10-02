@@ -43,7 +43,7 @@ INSERT INTO Livros (isbn, titulo, Genero, Descricao, Impressoes, Paginas, Ano_pu
 ('978-03-85472-57-9', 'Amor em Tempos Difíceis', 'Romance', 'Drama romântico contemporâneo', 4000, 250, '2021-05-05', 'Carolina Dias', 'Única', 20);
 
 ALTER TABLE Exemplares
-ADD COLUMN Livro_ISBN VARCHAR(20) NOT NULL,
+ADD COLUMN Livro_ISBN VARCHAR(20) NULL,
 ADD CONSTRAINT fk_exemplar_livro FOREIGN KEY (Livro_ISBN) REFERENCES Livros(Isbn);
 UPDATE Exemplares SET Livro_ISBN = '978-03-16494-27-8' WHERE Id_EXE = 1;
 UPDATE Exemplares SET Livro_ISBN = '978-01-40449-13-6' WHERE Id_EXE = 2;
