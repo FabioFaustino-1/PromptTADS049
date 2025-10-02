@@ -1,4 +1,4 @@
-create database editora_2;
+create database editora;
 use editora_2;
 
 CREATE TABLE if not exists Livros (
