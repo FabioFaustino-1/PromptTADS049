@@ -41,3 +41,4 @@ ADD CONSTRAINT fk_exemplar_livro FOREIGN KEY (Livro_ISBN) REFERENCES Livros(Isbn
 
 
 
+  
