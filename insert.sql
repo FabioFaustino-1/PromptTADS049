@@ -42,31 +42,33 @@ INSERT INTO Livros (isbn, titulo, Genero, Descricao, Impressoes, Paginas, Ano_pu
 ('978-06-11224-15-5', 'Líderes do Século', 'Biografia', 'Grandes líderes mundiais', 1200, 500, '2000-10-10', 'George White', 'Única', 19),
 ('978-03-85472-57-9', 'Amor em Tempos Difíceis', 'Romance', 'Drama romântico contemporâneo', 4000, 250, '2021-05-05', 'Carolina Dias', 'Única', 20);
 
-ALTER TABLE Exemplares
-ADD COLUMN Livro_ISBN VARCHAR(20) NULL,
-ADD CONSTRAINT fk_exemplar_livro FOREIGN KEY (Livro_ISBN) REFERENCES Livros(Isbn);
-UPDATE Exemplares SET Livro_ISBN = '978-03-16494-27-8' WHERE Id_EXE = 1;
-UPDATE Exemplares SET Livro_ISBN = '978-01-40449-13-6' WHERE Id_EXE = 2;
-UPDATE Exemplares SET Livro_ISBN = '978-01-43127-74-1' WHERE Id_EXE = 3;
-UPDATE Exemplares SET Livro_ISBN = '978-05-25559-47-5' WHERE Id_EXE = 4;
-UPDATE Exemplares SET Livro_ISBN = '978-05-25434-14-7' WHERE Id_EXE = 5;
-UPDATE Exemplares SET Livro_ISBN = '978-05-25996-15-2' WHERE Id_EXE = 6;
-UPDATE Exemplares SET Livro_ISBN = '978-05-93239-13-4' WHERE Id_EXE = 7;
-UPDATE Exemplares SET Livro_ISBN = '978-14-00033-41-6' WHERE Id_EXE = 8;
-UPDATE Exemplares SET Livro_ISBN = '978-06-24577-14-4' WHERE Id_EXE = 9;
-UPDATE Exemplares SET Livro_ISBN = '978-07-35211-29-2' WHERE Id_EXE = 10;
-UPDATE Exemplares SET Livro_ISBN = '978-15-01124-02-0' WHERE Id_EXE = 11;
-UPDATE Exemplares SET Livro_ISBN = '978-06-23150-07-7' WHERE Id_EXE = 12;
-UPDATE Exemplares SET Livro_ISBN = '978-05-93139-13-4' WHERE Id_EXE = 13;
-UPDATE Exemplares SET Livro_ISBN = '978-12-50768-61-5' WHERE Id_EXE = 14;
-UPDATE Exemplares SET Livro_ISBN = '978-19-82137-27-4' WHERE Id_EXE = 15;
-UPDATE Exemplares SET Livro_ISBN = '979-12-34567-89-0' WHERE Id_EXE = 16;
-UPDATE Exemplares SET Livro_ISBN = '978-05-25566-15-2' WHERE Id_EXE = 17;
-UPDATE Exemplares SET Livro_ISBN = '978-01-41439-60-0' WHERE Id_EXE = 18;
-UPDATE Exemplares SET Livro_ISBN = '978-06-11224-15-5' WHERE Id_EXE = 19;
-UPDATE Exemplares SET Livro_ISBN = '978-03-85472-57-9' WHERE Id_EXE = 20;
 
-INSERT INTO Exemplares (Condicao, `Estatus`) VALUES
+
+ALTER TABLE Exemplares
+ADD COLUMN Livro_ISBN_2 VARCHAR(20) NULL,
+ADD CONSTRAINT fk_exemplar_livro_2 FOREIGN KEY (Livro_ISBN_2) REFERENCES Livros(Isbn);
+UPDATE Exemplares SET Livro_ISBN_2 = '978-03-16494-27-8' WHERE Id_EXE = 1;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-01-40449-13-6' WHERE Id_EXE = 2;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-01-43127-74-1' WHERE Id_EXE = 3;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-05-25559-47-5' WHERE Id_EXE = 4;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-05-25434-14-7' WHERE Id_EXE = 5;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-05-25996-15-2' WHERE Id_EXE = 6;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-05-93239-13-4' WHERE Id_EXE = 7;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-14-00033-41-6' WHERE Id_EXE = 8;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-06-24577-14-4' WHERE Id_EXE = 9;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-07-35211-29-2' WHERE Id_EXE = 10;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-15-01124-02-0' WHERE Id_EXE = 11;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-06-23150-07-7' WHERE Id_EXE = 12;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-05-93139-13-4' WHERE Id_EXE = 13;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-12-50768-61-5' WHERE Id_EXE = 14;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-19-82137-27-4' WHERE Id_EXE = 15;
+UPDATE Exemplares SET Livro_ISBN_2 = '979-12-34567-89-0' WHERE Id_EXE = 16;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-05-25566-15-2' WHERE Id_EXE = 17;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-01-41439-60-0' WHERE Id_EXE = 18;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-06-11224-15-5' WHERE Id_EXE = 19;
+UPDATE Exemplares SET Livro_ISBN_2 = '978-03-85472-57-9' WHERE Id_EXE = 20;
+
+INSERT INTO Exemplares (Condicao, `status`) VALUES
 ('Capa danificada', 'RUIM'),
 ('Páginas rasgadas', 'PESSIMO'),
 ('Bom estado geral', 'INDIFERENTE'),
@@ -88,49 +90,49 @@ INSERT INTO Exemplares (Condicao, `Estatus`) VALUES
 ('Pequenas rasuras', 'RUIM'),
 ('Muito bem conservado', 'INDIFERENTE');
 
-INSERT INTO Clientes (nome, email, telefone, Rua, estado, cidade) VALUES
-('Ana Oliveira', 'ana.oliveira@gmail.com', 819876543, 'Rua A', 'PE', 'Recife'),
-('João Santos', 'joao.santos@hotmail.com', 819123456, 'Rua B', 'PE', 'Olinda'),
-('Marcos Lima', 'marcos.lima@yahoo.com', 819222333, 'Rua C', 'PE', 'Jaboatão'),
-('Beatriz Costa', 'bia.costa@gmail.com', 819555666, 'Rua D', 'PE', 'Paulista'),
-('Felipe Rocha', 'felipe.rocha@gmail.com', 819777888, 'Rua E', 'RJ', 'Rio de Janeiro'),
-('Juliana Melo', 'juliana.melo@outlook.com', 819999000, 'Rua F', 'SP', 'São Paulo'),
-('Paulo Souza', 'paulo.souza@gmail.com', 819111222, 'Rua G', 'SP', 'Campinas'),
-('Marina Duarte', 'marina.duarte@hotmail.com', 819333444, 'Rua H', 'BA', 'Salvador'),
-('Rafael Gomes', 'rafael.gomes@gmail.com', 819444555, 'Rua I', 'MG', 'Belo Horizonte'),
-('Camila Torres', 'camila.torres@gmail.com', 819666777, 'Rua J', 'RS', 'Porto Alegre'),
-('Lucas Almeida', 'lucas.almeida@gmail.com', 819222444, 'Rua K', 'PR', 'Curitiba'),
-('Carolina Silva', 'carol.silva@yahoo.com', 819888999, 'Rua L', 'PE', 'Caruaru'),
-('Thiago Mendes', 'thiago.mendes@gmail.com', 819555444, 'Rua M', 'AM', 'Manaus'),
-('Patrícia Nogueira', 'pat.nogueira@gmail.com', 819101112, 'Rua N', 'CE', 'Fortaleza'),
-('Eduardo Vasconcelos', 'edu.vasconcelos@gmail.com', 819202122, 'Rua O', 'DF', 'Brasília'),
-('Fernanda Azevedo', 'fernanda.azevedo@hotmail.com', 819303132, 'Rua P', 'GO', 'Goiânia'),
-('Rodrigo Ferreira', 'rodrigo.ferreira@gmail.com', 819404142, 'Rua Q', 'PA', 'Belém'),
-('Sofia Martins', 'sofia.martins@gmail.com', 819505152, 'Rua R', 'SC', 'Florianópolis'),
-('Gustavo Ribeiro', 'gustavo.ribeiro@gmail.com', 819606162, 'Rua S', 'MT', 'Cuiabá'),
-('Aline Barros', 'aline.barros@gmail.com', 819707172, 'Rua T', 'PE', 'Petrolina');
+INSERT INTO Clientes (nome, email, telefone, Cep_clie, estado, cidade) VALUES
+('Ana Oliveira', 'ana.oliveira@gmail.com', 819876543, '30569-54', 'PE', 'Recife'),
+('João Santos', 'joao.santos@hotmail.com', 819123456, '70938-28', 'PE', 'Olinda'),
+('Marcos Lima', 'marcos.lima@yahoo.com', 819222333, '42387-09', 'PE', 'Jaboatão'),
+('Beatriz Costa', 'bia.costa@gmail.com', 819555666, '50621-77', 'PE', 'Paulista'),
+('Felipe Rocha', 'felipe.rocha@gmail.com', 819777888, '14239-65', 'RJ', 'Rio de Janeiro'),
+('Juliana Melo', 'juliana.melo@outlook.com', 819999000, '30587-04', 'SP', 'São Paulo'),
+('Paulo Souza', 'paulo.souza@gmail.com', 819111222, '75036-16', 'SP', 'Campinas'),
+('Marina Duarte', 'marina.duarte@hotmail.com', 819333444, '20365-91', 'BA', 'Salvador'),
+('Rafael Gomes', 'rafael.gomes@gmail.com', 819444555, '67204-83', 'MG', 'Belo Horizonte'),
+('Camila Torres', 'camila.torres@gmail.com', 819666777, '15782-62', 'RS', 'Porto Alegre'),
+('Lucas Almeida', 'lucas.almeida@gmail.com', 819222444, '28479-50', 'PR', 'Curitiba'),
+('Carolina Silva', 'carol.silva@yahoo.com', 819888999, '47938-37', 'PE', 'Caruaru'),
+('Thiago Mendes', 'thiago.mendes@gmail.com', 819555444, '63192-49', 'AM', 'Manaus'),
+('Patrícia Nogueira', 'pat.nogueira@gmail.com', 819101112, '15984-63', 'CE', 'Fortaleza'),
+('Eduardo Vasconcelos', 'edu.vasconcelos@gmail.com', 819202122, '24085-38', 'DF', 'Brasília'),
+('Fernanda Azevedo', 'fernanda.azevedo@hotmail.com', 819303132, '95472-81', 'GO', 'Goiânia'),
+('Rodrigo Ferreira', 'rodrigo.ferreira@gmail.com', 819404142, '17560-42', 'PA', 'Belém'),
+('Sofia Martins', 'sofia.martins@gmail.com', 819505152, '38374-90', 'SC', 'Florianópolis'),
+('Gustavo Ribeiro', 'gustavo.ribeiro@gmail.com', 819606162, '58136-74', 'MT', 'Cuiabá'),
+('Aline Barros', 'aline.barros@gmail.com', 819707172, '64820-37', 'PE', 'Petrolina');
 
-INSERT INTO funcionarios (Estado_civil, telefone, cargo, nome, Cidade, Estado, Rua, email) VALUES
-('Solteiro', 819100200, 'Atendente', 'Carlos Henrique', 'Recife', 'PE', 'Rua Alfa', 'carlos.henrique@editora.com'),
-('Casado', 819200300, 'Gerente', 'Mariana Silva', 'Olinda', 'PE', 'Rua Beta', 'mariana.silva@editora.com'),
-('Solteira', 819300400, 'Assistente', 'Joana Freitas', 'Jaboatão', 'PE', 'Rua Gama', 'joana.freitas@editora.com'),
-('Casado', 819400500, 'Editor', 'Pedro Alves', 'São Paulo', 'SP', 'Rua Delta', 'pedro.alves@editora.com'),
-('Divorciada', 819500600, 'Designer', 'Carla Moura', 'Rio de Janeiro', 'RJ', 'Rua Epsilon', 'carla.moura@editora.com'),
-('Solteiro', 819600700, 'Revisor', 'Lucas Pereira', 'Belo Horizonte', 'MG', 'Rua Zeta', 'lucas.pereira@editora.com'),
-('Casado', 819700800, 'Vendedor', 'Paulo Gomes', 'Campinas', 'SP', 'Rua Eta', 'paulo.gomes@editora.com'),
-('Solteira', 819800900, 'Secretária', 'Ana Beatriz', 'Salvador', 'BA', 'Rua Teta', 'ana.beatriz@editora.com'),
-('Casado', 819901000, 'Atendente', 'Roberto Dias', 'Fortaleza', 'CE', 'Rua Iota', 'roberto.dias@editora.com'),
-('Solteiro', 819111213, 'Segurança', 'Felipe Lima', 'Brasília', 'DF', 'Rua Kappa', 'felipe.lima@editora.com'),
-('Viúva', 819222324, 'Auxiliar', 'Luciana Prado', 'Manaus', 'AM', 'Rua Lambda', 'luciana.prado@editora.com'),
-('Casado', 819333435, 'Motorista', 'André Santos', 'Porto Alegre', 'RS', 'Rua Mi', 'andre.santos@editora.com'),
-('Solteira', 819444546, 'Contadora', 'Patrícia Castro', 'Curitiba', 'PR', 'Rua Ni', 'patricia.castro@editora.com'),
-('Casado', 819555657, 'Diretor', 'José Roberto', 'Recife', 'PE', 'Rua Omicron', 'jose.roberto@editora.com'),
-('Solteira', 819666768, 'RH', 'Sofia Mendes', 'Olinda', 'PE', 'Rua Pi', 'sofia.mendes@editora.com'),
-('Casado', 819777879, 'Supervisor', 'Marcelo Nogueira', 'Belém', 'PA', 'Rua Rho', 'marcelo.nogueira@editora.com'),
-('Solteiro', 819888990, 'Analista TI', 'Thiago Costa', 'Goiânia', 'GO', 'Rua Sigma', 'thiago.costa@editora.com'),
-('Casada', 819999101, 'Gerente', 'Fernanda Ribeiro', 'Natal', 'RN', 'Rua Tau', 'fernanda.ribeiro@editora.com'),
-('Solteiro', 819121314, 'Assistente', 'Gustavo Azevedo', 'Maceió', 'AL', 'Rua Upsilon', 'gustavo.azevedo@editora.com'),
-('Casado', 819141516, 'Auxiliar', 'Ricardo Barbosa', 'Florianópolis', 'SC', 'Rua Fi', 'ricardo.barbosa@editora.com');
+INSERT INTO funcionarios (Estado_civil, telefone, cargo_func, nome, Cidade, Estado, Cep, email) VALUES
+('Solteiro', 819100200, 'Atendente', 'Carlos Henrique', 'Recife', 'PE', '30569-54', 'carlos.henrique@editora.com'),
+('Casado', 819200300, 'Gerente', 'Mariana Silva', 'Olinda', 'PE', '70938-28', 'mariana.silva@editora.com'),
+('Solteira', 819300400, 'Assistente', 'Joana Freitas', 'Jaboatão', 'PE', '42387-09', 'joana.freitas@editora.com'),
+('Casado', 819400500, 'Editor', 'Pedro Alves', 'São Paulo', 'SP', '50621-77', 'pedro.alves@editora.com'),
+('Divorciada', 819500600, 'Designer', 'Carla Moura', 'Rio de Janeiro', 'RJ', '14239-65', 'carla.moura@editora.com'),
+('Solteiro', 819600700, 'Revisor', 'Lucas Pereira', 'Belo Horizonte', 'MG', '30587-04', 'lucas.pereira@editora.com'),
+('Casado', 819700800, 'Vendedor', 'Paulo Gomes', 'Campinas', 'SP', '75036-16', 'paulo.gomes@editora.com'),
+('Solteira', 819800900, 'Secretária', 'Ana Beatriz', 'Salvador', 'BA', '20365-91', 'ana.beatriz@editora.com'),
+('Casado', 819901000, 'Atendente', 'Roberto Dias', 'Fortaleza', 'CE', '67204-83', 'roberto.dias@editora.com'),
+('Solteiro', 819111213, 'Segurança', 'Felipe Lima', 'Brasília', 'DF', '15782-62', 'felipe.lima@editora.com'),
+('Viúva', 819222324, 'Auxiliar', 'Luciana Prado', 'Manaus', 'AM', '28479-50', 'luciana.prado@editora.com'),
+('Casado', 819333435, 'Motorista', 'André Santos', 'Porto Alegre', 'RS', '47938-37', 'andre.santos@editora.com'),
+('Solteira', 819444546, 'Contadora', 'Patrícia Castro', 'Curitiba', 'PR', '63192-49', 'patricia.castro@editora.com'),
+('Casado', 819555657, 'Diretor', 'José Roberto', 'Recife', 'PE', '15984-63', 'jose.roberto@editora.com'),
+('Solteira', 819666768, 'RH', 'Sofia Mendes', 'Olinda', 'PE', '24085-38', 'sofia.mendes@editora.com'),
+('Casado', 819777879, 'Supervisor', 'Marcelo Nogueira', 'Belém', 'PA', '95472-81', 'marcelo.nogueira@editora.com'),
+('Solteiro', 819888990, 'Analista TI', 'Thiago Costa', 'Goiânia', 'GO', '17560-42', 'thiago.costa@editora.com'),
+('Casada', 819999101, 'Gerente', 'Fernanda Ribeiro', 'Natal', 'RN', '38374-90', 'fernanda.ribeiro@editora.com'),
+('Solteiro', 819121314, 'Assistente', 'Gustavo Azevedo', 'Maceió', 'AL', '58136-74', 'gustavo.azevedo@editora.com'),
+('Casado', 819141516, 'Auxiliar', 'Ricardo Barbosa', 'Florianópolis', 'SC', '64820-37', 'ricardo.barbosa@editora.com');
 
 INSERT INTO departamentos (Nome_depar, Responsavel, Descricao_Ativ) VALUES
 ('Editorial', 2, 'Responsável pela edição dos livros'),
@@ -209,5 +211,4 @@ INSERT INTO Areas_Conhec (Descricao, Codigo_area) VALUES
 ('Arte', 'ART017'),
 ('Educação', 'EDU018'),
 ('Filosofia', 'FIL019'),
-('Psicologia', 'PSI020');
-
+('Psicologia', 'PSI020');  
