@@ -211,4 +211,4 @@ INSERT INTO Areas_Conhec (Descricao, Codigo_area) VALUES
 ('Arte', 'ART017'),
 ('Educação', 'EDU018'),
 ('Filosofia', 'FIL019'),
-('Psicologia', 'PSI020');  
+('Psicologia', 'PSI020');
