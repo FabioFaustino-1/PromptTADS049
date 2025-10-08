@@ -7,3 +7,5 @@ DROP TABLE IF EXISTS Exemplares;
 DROP TABLE IF EXISTS Livros;
 DROP TABLE IF EXISTS Autores;
 DROP TABLE IF EXISTS Areas_Conhec;
+DROP VIEW IF EXISTS autores_e_livros;
+DROP VIEW IF EXISTS supervisores;
