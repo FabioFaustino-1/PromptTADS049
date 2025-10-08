@@ -1,3 +1,17 @@
+create view autores_e_livros as
+	select autores.nome_autor, autores.id_autor, livros.titulo, livros.isbn
+		from autores join livros
+			on autores.id_autor = livros.id_autor
+				where livros.id_autor > 10;
+select * from autores_e_livros;
+
+
+create view supervisores as
+	select funcionarios.ID_funcionarios, funcionarios.nome, departamentos.responsavel, departamentos.nome_depar, departamentos.descricao_Ativ
+		from funcionarios join departamentos
+			on funcionarios.ID_funcionarios = departamentos.responsavel;
+select * from supervisores; 
+
 -- selects da tabela Livros
 select * from livros;
 select * from livros
@@ -69,16 +83,4 @@ SELECT I.palavra_chave, L.titulo
 	FROM Identificadores I
 		JOIN Livros L ON I.livros_ISBN = L.ISBN;
 -- Teste
-create view autores_e_livros as
-	select autores.nome_autor, autores.id_autor, livros.titulo, livros.isbn
-		from autores join livros
-			on autores.id_autor = livros.id_autor
-				where livros.id_autor > 10;
-select * from autores_e_livros;
 
-
-create view supervisores as
-	select funcionarios.ID_funcionarios, funcionarios.nome, departamentos.responsavel, departamentos.nome_depar, departamentos.descricao_Ativ
-		from funcionarios join departamentos
-			on funcionarios.ID_funcionarios = departamentos.responsavel;
-select * from supervisores; 
